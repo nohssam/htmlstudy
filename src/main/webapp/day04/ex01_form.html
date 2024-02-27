@@ -28,13 +28,127 @@
       input type 속성 중 name 속성은 데이터 전달 할 때 사용되는 name.
       input type 속성 중 value 속성은 데이터 전달 할 때 사용되는 value.
       ** 데이터가 전달 될 때   ~~~~?name=value&name=value&name=value
-                                              
-  -->
-  <form>
-     <input type="">
+      
+      ** checkbox, select 경우 같은이름이 여러개 가 지정될 경우가 있다. 이 경우 서버에서는 배열로 받는다.
+      ** radio , checkbox: checked 라는 속성은 선택되었다는 뜻
+      ** select : selected 속성을 지정하면 선택 되었다는 뜻
+                  option 태그와 함께 사용
+                  size는 화면에 표시되는 갯수
+                  multiple 속성은 지정하면 ctrl 키를 이용하면 동시에 여러개 선택 가능  
+                  
+      ** reset 속성은 form 태그 안에 입력한 정보를 초기화 한다.(버튼 형태)
+      ** submit 속성은 form 태그 정보를 action 이 지정한 페이지로 정보를 전달한다. (버튼형태)
+      ** reset, submit의 value는 서버에 전달되는 것이 아니라 버튼에 새겨지는 글자                                                             
+      
+      **  input type="text" 
+          disabled : 커서가 들어가지 않아서 입력할 수 없다.
+          readonly : 오직 읽기만 가능, 수정 안됨
+          placehoder : 힌트 표시  
+          required : 반드시 입력해야 되는 태그에 붙이는 속성 
+          pattern : [0-9(숫자만)]{3(자릿수)}
+                    [A-Za-z]
+                    [0-9]{3}-[0-9]{4}-[0-9]{4}
+          javascript 전까지는 sumbit 속성을 이용해서 서버에 정보를 전달
+          javascript 에서는 input type=button 속성에 onclick를 이용해서
+          javascript  함수 호출 해서 전달 할 수 한다.   
+          
+  --> 
+  <form action="ex01_form.html" method="get">
+     <p>
+     	아이디 :
+     	<!-- input type="text" => 한줄 입력, 입력한 정보가 value 가 된다. -->
+     	<input type="text" name="id" maxlength="10" placeholder="아이디를 입력하세요" value="a1111" required>
+     </p>
+     <p>
+     	<label>패스워드 : </label>
+     	<!--input type="password" => 입력한 내용 대신 ●(점으로 표시된다.)  -->
+     	<input type="password" name="pw" maxlength="10" placeholder="패스워드를 입력하세요" value="a1111" readonly>
+     </p>
+     <p>
+        <!-- label for 와 input type의 id 가 같으면 연결 된다.  -->
+     	<label for="username">이름 : </label>
+     	<input type="text" id="username" name="username" maxlength="10" placeholder="이름를 입력하세요" value="a1111" disabled>
+     </p>
+     <p>
+     	<label for="userage">나이 : </label>
+     	<!-- number는 maxlength가 안됨// min , max -->
+     	<input type="number" id="userage" name="userage" min="10" max="150">
+     </p>
+     <p>
+     	<label for="birth">생년월일 : </label>
+     	<input type="text" id="birth" name="birth" pattern="[0-9]{6}">
+     </p>
+     <p>
+     	 성별 :
+     	<input type="radio"  name="gender" value="1" checked > 남자
+     	<input type="radio"  name="gender" value="2"> 여자
+     </p>
+      <p>
+     	 취미 : 
+     	<input type="checkbox"  name="hobby" value="1"> 운동
+     	<input type="checkbox"  name="hobby" value="2"> 게임
+     	<input type="checkbox"  name="hobby" value="3"> 영화
+     	<input type="checkbox"  name="hobby" value="4"> 독서
+     </p>
+       <p>
+     	 주소 :
+         <select name="addr">
+            <option>::선택하세요::</option>
+            <!-- value를 입력하지 않으면 테스트가 value가 된다. -->
+         	<option value="1">서울</option>
+         	<option value="2">경기</option>
+         	<option value="3">제주</option>
+         	<option value="4">해외</option>
+         </select>
+     </p>
+      <p>
+     	 웹 브라우저 :
+         <select name="browser" multiple size="5">
+         	<option value="1">크롬</option>
+         	<option value="2">사파리</option>
+         	<option value="3">파이어폭스</option>
+         	<option value="4">엣지</option>
+         	<option value="5">오페라</option>
+         </select>
+     </p>
+     <!-- input type="file" 경우 form 속성 enctype="" 사용해야 된다. -->
+     <p>파일 : <input type="file" name="file"></p>
+     <p>날짜 : <input type="date" name="regdate"></p>
+     <p>시간 : <input type="time" name="time"></p>
+     <p>컬러 : <input type="color" name="color"></p>
+     <p>범위 : <input type="range" name="range"></p>
+     <p>자기소개서<br>
+     	 <textarea rows="5" cols="50" name="self"></textarea>
+     </p>
+     <p><input type="reset" value="취소"> </p>
+     <p><input type="submit" value="보내기"> </p>
   </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
